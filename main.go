@@ -10,28 +10,6 @@ import (
 	"github.com/yanzay/tbot/v2"
 )
 
-func composer(status, event, actor, repo, workflow, link string) string {
-	var text string
-
-	// choose icon based on the build status
-	icons := map[string]string{
-		"failure":   "❗️❗️❗️",
-		"cancelled": "❕❕❕",
-		"success":   "✅✅✅",
-	}
-
-	// removing underscore from event name to avoide markdown parser error
-	event = strings.Replace(event, "_", " ", 3)
-	event = strings.ToUpper(event)
-
-	// Message text composing
-	text = icons[strings.ToLower(status)] + "  *" + event + "*\n"
-	text += "was made at " + repo + " \nby " + actor + "\n"
-	text += "Check here " + "[" + workflow + "](" + link + ")"
-
-	return text
-}
-
 func linkgen(repo, event string) string {
 	context := map[string]string{
 		"issue_comment":               "issues",
@@ -53,11 +31,8 @@ func main() {
 	var (
 		// inputs provided by Github Actions runtime
 		// should be defined in the action.yml
-		token  = os.Getenv("INPUT_TOKEN")
-		chat   = os.Getenv("INPUT_CHAT")
-		status = os.Getenv("INPUT_STATUS")
-		event  = os.Getenv("INPUT_EVENT")
-		actor  = os.Getenv("INPUT_ACTOR")
+		token = os.Getenv("INPUT_TOKEN")
+		chat  = os.Getenv("INPUT_CHAT")
 
 		// github environment context
 		workflow = os.Getenv("GITHUB_WORKFLOW")
@@ -72,7 +47,7 @@ func main() {
 	link := linkgen(repo, event)
 
 	// Prepare message to send
-	msg := composer(status, event, actor, repo, workflow, link)
+	msg := os.Getenv("INPUT_MESSAGE")
 
 	// Send to chat using Markdown format
 	_, err := c.SendMessage(chat, msg, tbot.OptParseModeMarkdown)
