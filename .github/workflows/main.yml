@@ -60,4 +60,4 @@ jobs:
           chat: ${{ secrets.chat }}
           token: ${{ secrets.token }}
           message: |
-          ${{ github.actor }} ${{ github.event.action }} ${{ github.event.assignee }} to issue #number: "${{ github.event.issue.title }}" (${{ github.event.issue.html_url }})
+            ${{ github.actor }} ${{ github.event.action }} ${{ github.event.assignee }} to issue #number: "${{ github.event.issue.title }}" (${{ github.event.issue.html_url }})
