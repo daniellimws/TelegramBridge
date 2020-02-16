@@ -27,7 +27,7 @@ jobs:
           chat: ${{ secrets.chat }}
           token: ${{ secrets.token }}
           message: |
-            ${{ github.actor }} pushed ${{ github.event.ref }} ${{ github.event.compare }}
+            ${{ github.actor }} pushed to ${{ github.ref }} ${{ github.event.compare }}
             ${{ join(github.event.commits.*.message) }}
       - name: pull request open close
         uses: daniellimws/TelegramBridge@master
