@@ -1,6 +1,8 @@
 # Telegram Bridge
   This is a GitHub Action plugin to notify about the changes in GitHub to Telegram Chat via Bot. This could highly help in incresing the development pace.
 
+  Made some changes.
+
 ## What all can this do ?
   If you're using the provided [main.yaml](https://github.com/GokulDas027/TelegramBridge/blob/master/main.yaml) (recommended)
   
