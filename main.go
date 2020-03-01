@@ -23,8 +23,8 @@ func main() {
 	// Prepare message to send
 	msg := os.Getenv("INPUT_MESSAGE")
 
-	// Send to chat using Markdown format
-	_, err := c.SendMessage(chat, msg, tbot.OptParseModeMarkdown)
+	// Send to chat
+	_, err := c.SendMessage(chat, msg)
 	if err != nil {
 		log.Fatalf("unable to send message: %v", err)
 	}
